@@ -1,0 +1,20 @@
+server:
+  port: 8099
+
+spring:
+  application:
+    name: dupan-duplicate-file-cleaner
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maximum-pool-size: 30
+      minimum-idle: 10
+      max-lifetime: 18000000
+      connection-test-query: SELECT 1
+
+logging:
+  config: classpath:logback-spring.xml

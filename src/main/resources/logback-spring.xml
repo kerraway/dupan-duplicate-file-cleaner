@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>
+        %.-1level, [%d{yyyy-MM-dd'T'HH:mm:ss.SSSSSS}] %-5level -- : [%X{request_uuid}] %logger Line:%-3L Thread:%thread %X{module}%X{partner} %msg%n
+      </pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+  </appender>
+
+  <root level="INFO">
+    <appender-ref ref="stdout"/>
+  </root>
+
+  <Logger name="org.hibernate.SQL" level="INFO"/>
+  <Logger name="org.hibernate.type" level="INFO"/>
+</configuration>
