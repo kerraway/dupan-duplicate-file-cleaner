@@ -3,7 +3,23 @@
   <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
     <encoder>
       <pattern>
-        %.-1level, [%d{yyyy-MM-dd'T'HH:mm:ss.SSSSSS}] %-5level -- : [%X{request_uuid}] %logger Line:%-3L Thread:%thread %X{module}%X{partner} %msg%n
+        %.-1level, [%d{yyyy-MM-dd'T'HH:mm:ss.SSSSSS}] %-5level -- : [%X{request_uuid}] %logger Line:%-3L Thread:%thread %msg%n
+      </pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+  </appender>
+
+  <appender name="fileout" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>INFO</level>
+    </filter>
+    <file>log/info.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>log/info.%d{yyyyMMdd}.log</fileNamePattern>
+    </rollingPolicy>
+    <encoder>
+      <pattern>
+        %.-1level, [%d{yyyy-MM-dd'T'HH:mm:ss.SSSSSS}] %-5level -- : [%X{request_uuid}] %logger Line:%-3L Thread:%thread %msg%n
       </pattern>
       <charset>UTF-8</charset>
     </encoder>
@@ -11,6 +27,7 @@
 
   <root level="INFO">
     <appender-ref ref="stdout"/>
+    <appender-ref ref="fileout"/>
   </root>
 
   <Logger name="org.hibernate.SQL" level="INFO"/>
