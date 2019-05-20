@@ -136,7 +136,11 @@ public class DupanService {
       dpFile.setUid(uid);
     }
     BeanUtil.copyPropertiesIgnoreNull(dupanFile, dpFile);
-    dpFileDao.save(dpFile);
+    try {
+      dpFileDao.save(dpFile);
+    } catch (Exception e) {
+      logger.error("Save dp file {} into DB error.", dpFile, e);
+    }
   }
 
   /**

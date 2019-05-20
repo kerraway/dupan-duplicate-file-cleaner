@@ -1,5 +1,6 @@
 package com.github.kerraway.ddfc.model;
 
+import com.github.kerraway.ddfc.util.JacksonUtil;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -103,4 +104,8 @@ public class DpFile {
   @LastModifiedDate
   private Date updatedAt;
 
+  @Override
+  public String toString() {
+    return JacksonUtil.writeValue(this);
+  }
 }
